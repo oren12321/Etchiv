@@ -1,4 +1,4 @@
-# PowerShell Registry Management & Provisioning Framework
+# Etchiv: PowerShell Registry Management & Provisioning Framework
 
 A professional-grade toolkit for declarative registry orchestration, specifically designed for **Windows Image Customization**, **Automated Deployment Scripts**, and **User Profile Provisioning**.
 
