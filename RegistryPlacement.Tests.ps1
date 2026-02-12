@@ -63,59 +63,64 @@ Describe "Test-RegistryPlacement - First-run semantics" {
 
 Describe "Test-RegistryPlacement - Explorer keys" {
 
-    It "Explorer keys go to FirstUser + PerUser only" {
+    It "Explorer keys go to all user scopes except SYSTEM" {
         $p = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
 
         Test-RegistryPlacement -Path $p -Scope FirstUser   | Should -BeTrue
         Test-RegistryPlacement -Path $p -Scope PerUser     | Should -BeTrue
-        Test-RegistryPlacement -Path $p -Scope DefaultUser | Should -BeFalse
+        Test-RegistryPlacement -Path $p -Scope DefaultUser | Should -BeTrue
         Test-RegistryPlacement -Path $p -Scope SYSTEM      | Should -BeFalse
     }
 }
 
 Describe "Test-RegistryPlacement - Search / Start / Feeds rules" {
 
-    It "Search keys go only to FirstUser" {
+    It "Search keys go to all user scopes except SYSTEM" {
         $p = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search"
 
         Test-RegistryPlacement -Path $p -Scope FirstUser   | Should -BeTrue
-        Test-RegistryPlacement -Path $p -Scope DefaultUser | Should -BeFalse
-        Test-RegistryPlacement -Path $p -Scope PerUser     | Should -BeFalse
+        Test-RegistryPlacement -Path $p -Scope DefaultUser | Should -BeTrue
+        Test-RegistryPlacement -Path $p -Scope PerUser     | Should -BeTrue
+        Test-RegistryPlacement -Path $p -Scope SYSTEM      | Should -BeFalse
     }
 
-    It "StartMenu keys go only to FirstUser" {
+    It "StartMenu keys go to all user scopes except SYSTEM" {
         $p = "HKCU:\Software\Microsoft\Windows\CurrentVersion\StartMenu"
 
         Test-RegistryPlacement -Path $p -Scope FirstUser   | Should -BeTrue
-        Test-RegistryPlacement -Path $p -Scope DefaultUser | Should -BeFalse
-        Test-RegistryPlacement -Path $p -Scope PerUser     | Should -BeFalse
+        Test-RegistryPlacement -Path $p -Scope DefaultUser | Should -BeTrue
+        Test-RegistryPlacement -Path $p -Scope PerUser     | Should -BeTrue
+        Test-RegistryPlacement -Path $p -Scope SYSTEM      | Should -BeFalse
     }
 
-    It "Feeds keys go only to FirstUser" {
+    It "Feeds keys go to all user scopes except SYSTEM" {
         $p = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Feeds"
 
         Test-RegistryPlacement -Path $p -Scope FirstUser   | Should -BeTrue
-        Test-RegistryPlacement -Path $p -Scope DefaultUser | Should -BeFalse
-        Test-RegistryPlacement -Path $p -Scope PerUser     | Should -BeFalse
+        Test-RegistryPlacement -Path $p -Scope DefaultUser | Should -BeTrue
+        Test-RegistryPlacement -Path $p -Scope PerUser     | Should -BeTrue
+        Test-RegistryPlacement -Path $p -Scope SYSTEM      | Should -BeFalse
     }
 }
 
 Describe "Test-RegistryPlacement - AppX / Package rules" {
 
-    It "AppX keys go only to FirstUser" {
+    It "AppX keys go to all user scopes except SYSTEM" {
         $p = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Appx"
 
         Test-RegistryPlacement -Path $p -Scope FirstUser   | Should -BeTrue
-        Test-RegistryPlacement -Path $p -Scope DefaultUser | Should -BeFalse
-        Test-RegistryPlacement -Path $p -Scope PerUser     | Should -BeFalse
+        Test-RegistryPlacement -Path $p -Scope DefaultUser | Should -BeTrue
+        Test-RegistryPlacement -Path $p -Scope PerUser     | Should -BeTrue
+        Test-RegistryPlacement -Path $p -Scope SYSTEM      | Should -BeFalse
     }
 
-    It "Package keys go only to FirstUser" {
+    It "Package keys go to all user scopes except SYSTEM" {
         $p = "HKCU:\Software\Microsoft\Windows\CurrentVersion\PackageRepository"
 
         Test-RegistryPlacement -Path $p -Scope FirstUser   | Should -BeTrue
-        Test-RegistryPlacement -Path $p -Scope DefaultUser | Should -BeFalse
-        Test-RegistryPlacement -Path $p -Scope PerUser     | Should -BeFalse
+        Test-RegistryPlacement -Path $p -Scope DefaultUser | Should -BeTrue
+        Test-RegistryPlacement -Path $p -Scope PerUser     | Should -BeTrue
+        Test-RegistryPlacement -Path $p -Scope SYSTEM      | Should -BeFalse
     }
 }
 
